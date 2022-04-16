@@ -1,27 +1,31 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # create a new restaurant - show the new restaurant form
-  # The `new` route needs to be *before* `show` route.
-  get "tasks/new", to: "tasks#new"
+  # resources replaces all CRUD actions. I've kept them below for legacy. Details:
+  # https://guides.rubyonrails.org/routing.html#resource-routing-the-rails-default
+  # https://riptutorial.com/ruby-on-rails/example/1080/resource-routing--basic-
+  resources :tasks
 
-  # add a new restaurant - submit the data
-  post "tasks", to: "tasks#create"
+  # legacy tasks before refactoring
+  # # create a new restaurant - show the new restaurant form
+  # # The `new` route needs to be *before* `show` route.
+  # get "tasks/new", to: "tasks#new"
 
-  # show all tasks
-  get "tasks", to: "tasks#index"
+  # # add a new restaurant - submit the data
+  # post "tasks", to: "tasks#create"
 
-  # show one task
-  get "tasks/:id", to: "tasks#show", as: :task
+  # # show all tasks
+  # get "tasks", to: "tasks#index"
 
-  # edit an existing task step 1: display the existing task in fields
-  get "tasks/:id/edit", to: "tasks#edit", as: :edit
+  # # show one task
+  # get "tasks/:id", to: "tasks#show", as: :task
 
-  # edit an existing task step 2, patch in the new data
-  patch "tasks/:id", to: "tasks#update"
+  # # edit an existing task step 1: display the existing task in fields
+  # get "tasks/:id/edit", to: "tasks#edit", as: :edit
 
-  # destroy a task
-  delete "tasks/:id", to: "tasks#destroy"
+  # # edit an existing task step 2, patch in the new data
+  # patch "tasks/:id", to: "tasks#update"
 
-
+  # # destroy a task
+  # delete "tasks/:id", to: "tasks#destroy"
 end

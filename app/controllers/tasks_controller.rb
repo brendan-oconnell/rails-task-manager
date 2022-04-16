@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
+    get_task
   end
 
   def create
@@ -19,11 +19,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    get_task
   end
 
   def update
-    @task = Task.find(params[:id])
+    get_task
     @task.update(task_params)
     # Will raise ActiveModel::ForbiddenAttributesError
     # We need to use Strong Params again to avoid this error, see private
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    get_task
     @task.destroy
 
     # no need for app/views/restaurants/destroy.html.erb
@@ -45,5 +45,9 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :details, :completed)
+  end
+
+  def get_task
+    @task = Task.find(params[:id])
   end
 end
